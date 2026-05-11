@@ -1,11 +1,11 @@
 import { Button } from '#/components/ui/button'
 import { Separator } from '#/components/ui/separator'
 import { authClient } from '#/lib/auth-client'
+import { toInternalPath } from '#/lib/auth-redirect'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
-// import { toInternalPath } from '#/lib/auth-redirect'
 
 export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
   const navigate = useNavigate()
@@ -21,8 +21,8 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
         fetchOptions: {
           onSuccess: () => {
             toast.success('Logged in successfully!')
-            // const internalRedirect = toInternalPath(redirectTo)
-            navigate({ to: '/' })
+            const internalRedirect = toInternalPath(redirectTo)
+            navigate({ to: (internalRedirect ?? '/') as any })
           },
           onError: ({ error }) => {
             toast.error(error.message || 'Failed to login. Please try again.')
@@ -50,7 +50,7 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
         {isSubmitting === 'github' ? 'Redirecting...' : 'Continue with GitHub'}
       </Button>
 
-      <Button
+      {/* <Button
         variant="outline"
         className="w-full h-11 rounded-xl gap-3"
         onClick={() => handleSocialLogin('google')}
@@ -75,7 +75,7 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
           />
         </svg>
         {isSubmitting === 'google' ? 'Redirecting...' : 'Continue with Google'}
-      </Button>
+      </Button> */}
 
       <div className="relative py-2">
         <Separator />

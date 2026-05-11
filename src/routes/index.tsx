@@ -1,12 +1,4 @@
 import { getSession } from '@/lib/auth.functions'
-// import {
-//   LAYOUT_OPTIONS,
-//   PRESENTATION_TEMPLATES,
-//   PresentationListSection,
-//   SLIDE_STYLES,
-//   TONE_OPTIONS,
-//   presentationQueryKeys,
-// } from '#/features/presentations'
 import { Button } from '#/components/ui/button'
 import { Label } from '#/components/ui/label'
 import {
@@ -27,6 +19,8 @@ import { SLIDE_STYLES, LAYOUT_OPTIONS, TONE_OPTIONS } from '#/features/presentat
 import { PRESENTATION_TEMPLATES } from '#/features/presentation/constant/presentation-templates'
 import { createPresentation } from '#/features/presentation/actions/presentation-mutation'
 import { presentationQueryKeys } from '#/features/presentation/hooks/query-keys'
+import { listPresentations } from '#/features/presentation/actions/presentation-queries'
+import { PresentationListSection } from '#/features/presentation/components/presentation-list-section'
 
 type HomeFormState = {
   content: string
@@ -64,10 +58,10 @@ function HomePage() {
     layout: 'balanced',
   })
 
-  // const { data: presentations = [], isPending: listPending } = useQuery({
-  //   queryKey: presentationQueryKeys.list(),
-  //   queryFn: () => listPresentations(),
-  // })
+  const { data: presentations = [], isPending: listPending } = useQuery({
+    queryKey: presentationQueryKeys.list(),
+    queryFn: () => listPresentations(),
+  })
 
   const createMut = useMutation({
     mutationFn: () =>
@@ -104,10 +98,10 @@ function HomePage() {
   return (
     <main className="min-h-screen pt-24 pb-12 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* <PresentationListSection
+        <PresentationListSection
           presentations={presentations}
           isPending={listPending}
-        /> */}
+        />
 
         {/* Header */}
         <div className="text-center mb-10">

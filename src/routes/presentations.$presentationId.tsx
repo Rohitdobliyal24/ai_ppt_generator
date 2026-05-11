@@ -1,15 +1,7 @@
 import { getSession } from '@/lib/auth.functions'
 import {
-  LAYOUT_OPTIONS,
-  SLIDE_STYLES,
-  TONE_OPTIONS,
   presentationThumbnailUrl,
-  useFullscreen,
-  usePresentationDetail,
-} from '#/features/presentations'
-import { GenerationStatus } from '#/features/presentations/components/generation-status'
-import { SlideCard } from '#/features/presentations/components/slide-card'
-import { SlidePreview } from '#/features/presentations/components/slide-preview'
+} from '#/features/presentation'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -51,8 +43,14 @@ import {
 } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { toast } from 'sonner'
-import { SlideshowModal } from '#/features/presentations/components/slideshow-modal'
-import { exportToPptx } from '#/features/presentations/lib/export-pptx'
+import { usePresentationDetail } from '#/features/presentation/hooks/use-presentation-detail'
+import { LAYOUT_OPTIONS, SLIDE_STYLES, TONE_OPTIONS } from '#/features/presentation'
+import { GenerationStatus } from '#/features/presentation/components/generation-status'
+import { SlideCard } from '#/features/presentation/components/slide-card'
+import { SlideshowModal } from '#/features/presentation/components/slideshow-modal'
+import { SlidePreview } from '#/features/presentation/components/slide-preview'
+import { useFullscreen } from '#/features/presentation/hooks/use-fullscreen'
+import { exportToPptx } from '#/features/presentation/lib/export-pptx'
 
 export const Route = createFileRoute('/presentations/$presentationId')({
   beforeLoad: async ({ location }) => {

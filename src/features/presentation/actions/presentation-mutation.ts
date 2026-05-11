@@ -1,11 +1,11 @@
 import { createServerFn } from '@tanstack/react-start'
 
-import { prisma } from '#/db'
 import { inngest } from '#/integrations/inngest/client'
 
 import { deriveTitle, requirePresentationUserId } from '../lib/server-helpers'
 import { createPresentationInputSchema } from '../types/schema'
 import { presentationIdInputSchema, updatePresentationInputSchema } from '../types/schema'
+import { prisma } from '#/lib/db'
 
 export const createPresentation = createServerFn({ method: 'POST' })
   .inputValidator((data: unknown) => createPresentationInputSchema.parse(data))
