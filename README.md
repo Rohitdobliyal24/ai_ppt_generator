@@ -1,4 +1,5 @@
 # AI_PPT_Generator
+<img width="1913" height="827" alt="Screenshot from 2026-05-11 23-25-07" src="https://github.com/user-attachments/assets/4c5cae59-99ce-4823-bb7c-f4d972f93042" />
 
 Generate presentations from text.
 
